@@ -42,7 +42,7 @@ function adRenderSucceededHandler(args) {
       adomain: args.bid?.adserverTargeting?.hb_adomain,
       timeToRespond: args.bid?.timeToRespond,
       cpm: args.bid?.cpm,
-      adUnitCode: args.bid?.adUnitCode,
+      adUnitCode: args.bid?.adUnitCode
     },
     device: {
       ua: navigator.userAgent
@@ -65,7 +65,7 @@ function auctionEndHandler(args) {
         mediaType: b?.mediaTypes?.video ? 'VIDEO' : (b?.mediaTypes?.banner ? 'BANNER' : undefined),
         size: b?.sizes?.filter(s => s && s.length === 2).filter(s => Number.isInteger(s[0]) && Number.isInteger(s[1])).map(s => s[0] + 'x' + s[1]).find(s => s),
         device: b?.ortb2?.device,
-        adUnitCode: b?.adUnitCode,
+        adUnitCode: b?.adUnitCode
       }))
     })),
     bidsReceived: args.bidsReceived?.map(br => ({
@@ -78,7 +78,7 @@ function auctionEndHandler(args) {
       adomain: br?.adserverTargeting?.hb_adomain,
       timeToRespond: br?.timeToRespond,
       cpm: br?.cpm,
-      adUnitCode: br?.adUnitCode,
+      adUnitCode: br?.adUnitCode
     }))
   }
   sendEvent(EVENTS.AUCTION_END, event);
@@ -97,7 +97,7 @@ function bidTimeoutHandler(args) {
       size: t?.sizes?.filter(s => s && s.length === 2).filter(s => Number.isInteger(s[0]) && Number.isInteger(s[1])).map(s => s[0] + 'x' + s[1]).find(s => s),
       timeout: t?.timeout,
       device: t?.ortb2?.device,
-      adUnitCode: t?.adUnitCode,
+      adUnitCode: t?.adUnitCode
     }))
   }
   sendEvent(EVENTS.BID_TIMEOUT, event);
